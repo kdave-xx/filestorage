@@ -1,0 +1,900 @@
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (593.5ms)[0m   [0mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mSHOW KEYS FROM `schema_migrations`[0m
+  [4;35;1mSQL (404.5ms)[0m   [0mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (19.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateImages (20101207062729)
+  [4;36;1mSQL (201.5ms)[0m   [0;1mCREATE TABLE `images` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (61.5ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20101207062729')[0m
+Migrating to AddAttachments_toAddImageToImage (20101207062925)
+  [4;36;1mSQL (420.3ms)[0m   [0;1mALTER TABLE `images` ADD `image_file_name` varchar(255)[0m
+  [4;35;1mSQL (386.5ms)[0m   [0mALTER TABLE `images` ADD `image_content_type` varchar(255)[0m
+  [4;36;1mSQL (426.6ms)[0m   [0;1mALTER TABLE `images` ADD `image_file_size` int(11)[0m
+  [4;35;1mSQL (405.4ms)[0m   [0mALTER TABLE `images` ADD `image_updated_at` datetime[0m
+  [4;36;1mSQL (61.2ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20101207062925')[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (1.7ms)[0m   [0;1mSHOW FIELDS FROM `images`[0m
+  [4;35;1mSQL (2.5ms)[0m   [0mdescribe `images`[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mSHOW KEYS FROM `images`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#index (for 127.0.0.1 at 2010-12-07 12:04:32) [GET]
+
+NoMethodError (undefined method `[]' for :image:Symbol):
+  paperclip (2.3.6) lib/paperclip.rb:297:in `validates_attachment_presence'
+  app/models/image.rb:15
+  app/controllers/images_controller.rb:5:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (67.8ms)
+Rendered rescues/_request_and_response (2.0ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#index (for 127.0.0.1 at 2010-12-07 12:06:14) [GET]
+  [4;36;1mImage Load (0.7ms)[0m   [0;1mSELECT * FROM `images` [0m
+Rendering template within layouts/images
+Rendering images/index
+Completed in 91ms (View: 80, DB: 1) | 200 OK [http://localhost/images]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#new (for 127.0.0.1 at 2010-12-07 12:06:16) [GET]
+  [4;35;1mImage Columns (3.9ms)[0m   [0mSHOW FIELDS FROM `images`[0m
+Rendering template within layouts/images
+Rendering images/new
+Completed in 46ms (View: 30, DB: 4) | 200 OK [http://localhost/images/new]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#create (for 127.0.0.1 at 2010-12-07 12:06:31) [POST]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"4VfimXTGr4iEsdR6oitMwWHYQlyW0lY0VAqOkD+UtTM=", "image"=>{"name"=>"New Image", "image"=>#<File:/tmp/RackMultipart20101207-3957-2a7wxi-0>}}
+  [4;36;1mImage Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `images`[0m
+[paperclip] identify -format %wx%h '/tmp/stream20101207-3957-1nzw3nq-0.jpg[0]' 2>/dev/null
+[paperclip] convert '/tmp/stream20101207-3957-1nzw3nq-0.jpg[0]' -resize "640x640>" '/tmp/stream20101207-3957-1nzw3nq-020101207-3957-dqz7tl-0' 2>/dev/null
+[paperclip] identify -format %wx%h '/tmp/stream20101207-3957-1nzw3nq-0.jpg[0]' 2>/dev/null
+[paperclip] convert '/tmp/stream20101207-3957-1nzw3nq-0.jpg[0]' -resize "320x320>" '/tmp/stream20101207-3957-1nzw3nq-020101207-3957-oedjlh-0' 2>/dev/null
+[paperclip] identify -format %wx%h '/tmp/stream20101207-3957-1nzw3nq-0.jpg[0]' 2>/dev/null
+[paperclip] convert '/tmp/stream20101207-3957-1nzw3nq-0.jpg[0]' -resize "100x100>" '/tmp/stream20101207-3957-1nzw3nq-020101207-3957-1roxgrj-0' 2>/dev/null
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mImage Create (0.4ms)[0m   [0;1mINSERT INTO `images` (`name`, `created_at`, `image_file_name`, `image_file_size`, `updated_at`, `image_content_type`, `image_updated_at`) VALUES('New Image', '2010-12-07 06:36:33', 'Buster--63-.jpg', 386001, '2010-12-07 06:36:33', 'image/jpeg', '2010-12-07 06:36:31')[0m
+[paperclip] Saving attachments.
+[paperclip] saving /home/pc3/Myproject/heroku/filestorage/public/system/000/000/001/large/Buster--63-.jpg
+[paperclip] saving /home/pc3/Myproject/heroku/filestorage/public/system/000/000/001/medium/Buster--63-.jpg
+[paperclip] saving /home/pc3/Myproject/heroku/filestorage/public/system/000/000/001/original/Buster--63-.jpg
+[paperclip] saving /home/pc3/Myproject/heroku/filestorage/public/system/000/000/001/thumb/Buster--63-.jpg
+  [4;35;1mSQL (58.9ms)[0m   [0mCOMMIT[0m
+Redirected to http://localhost:3000/images/1
+Completed in 1923ms (DB: 61) | 302 Found [http://localhost/images]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#show (for 127.0.0.1 at 2010-12-07 12:06:33) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mImage Columns (3.8ms)[0m   [0;1mSHOW FIELDS FROM `images`[0m
+  [4;35;1mImage Load (0.6ms)[0m   [0mSELECT * FROM `images` WHERE (`images`.`id` = 1) [0m
+Rendering template within layouts/images
+Rendering images/show
+Completed in 38ms (View: 15, DB: 5) | 200 OK [http://localhost/images/1]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#index (for 127.0.0.1 at 2010-12-07 12:07:51) [GET]
+  [4;36;1mImage Load (0.7ms)[0m   [0;1mSELECT * FROM `images` [0m
+Rendering template within layouts/images
+Rendering images/index
+  [4;35;1mImage Columns (1.7ms)[0m   [0mSHOW FIELDS FROM `images`[0m
+Completed in 38ms (View: 26, DB: 3) | 200 OK [http://localhost/images]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#new (for 127.0.0.1 at 2010-12-07 12:07:53) [GET]
+  [4;36;1mImage Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `images`[0m
+Rendering template within layouts/images
+Rendering images/new
+Completed in 31ms (View: 19, DB: 1) | 200 OK [http://localhost/images/new]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#create (for 127.0.0.1 at 2010-12-07 12:07:58) [POST]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"4VfimXTGr4iEsdR6oitMwWHYQlyW0lY0VAqOkD+UtTM=", "image"=>{"name"=>"New Image", "image"=>#<File:/tmp/RackMultipart20101207-4037-ao3poa-0>}}
+  [4;35;1mImage Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `images`[0m
+[paperclip] identify -format %wx%h '/tmp/stream20101207-4037-52oe3g-0.jpg[0]' 2>/dev/null
+[paperclip] convert '/tmp/stream20101207-4037-52oe3g-0.jpg[0]' -resize "640x640>" '/tmp/stream20101207-4037-52oe3g-020101207-4037-1ya5mvb-0' 2>/dev/null
+[paperclip] identify -format %wx%h '/tmp/stream20101207-4037-52oe3g-0.jpg[0]' 2>/dev/null
+[paperclip] convert '/tmp/stream20101207-4037-52oe3g-0.jpg[0]' -resize "320x320>" '/tmp/stream20101207-4037-52oe3g-020101207-4037-1ohuvfk-0' 2>/dev/null
+[paperclip] identify -format %wx%h '/tmp/stream20101207-4037-52oe3g-0.jpg[0]' 2>/dev/null
+[paperclip] convert '/tmp/stream20101207-4037-52oe3g-0.jpg[0]' -resize "100x100>" '/tmp/stream20101207-4037-52oe3g-020101207-4037-1a1b05-0' 2>/dev/null
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mImage Create (0.4ms)[0m   [0mINSERT INTO `images` (`name`, `created_at`, `image_file_name`, `image_file_size`, `updated_at`, `image_content_type`, `image_updated_at`) VALUES('New Image', '2010-12-07 06:37:59', 'Baseball-2.jpg', 296538, '2010-12-07 06:37:59', 'image/jpeg', '2010-12-07 06:37:58')[0m
+[paperclip] Saving attachments.
+[paperclip] saving /home/pc3/Myproject/heroku/filestorage/public/system/images/2/large/Baseball-2.jpg
+[paperclip] saving /home/pc3/Myproject/heroku/filestorage/public/system/images/2/medium/Baseball-2.jpg
+[paperclip] saving /home/pc3/Myproject/heroku/filestorage/public/system/images/2/original/Baseball-2.jpg
+[paperclip] saving /home/pc3/Myproject/heroku/filestorage/public/system/images/2/thumb/Baseball-2.jpg
+  [4;36;1mSQL (67.4ms)[0m   [0;1mCOMMIT[0m
+Redirected to http://localhost:3000/images/2
+Completed in 1416ms (DB: 69) | 302 Found [http://localhost/images]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#show (for 127.0.0.1 at 2010-12-07 12:07:59) [GET]
+  Parameters: {"id"=>"2"}
+  [4;35;1mImage Columns (2.6ms)[0m   [0mSHOW FIELDS FROM `images`[0m
+  [4;36;1mImage Load (0.5ms)[0m   [0;1mSELECT * FROM `images` WHERE (`images`.`id` = 2) [0m
+Rendering template within layouts/images
+Rendering images/show
+Completed in 43ms (View: 18, DB: 3) | 200 OK [http://localhost/images/2]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (186.4ms)[0m   [0mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSHOW KEYS FROM `schema_migrations`[0m
+  [4;35;1mSQL (482.7ms)[0m   [0mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (40.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateImages (20101207062729)
+  [4;36;1mSQL (279.4ms)[0m   [0;1mCREATE TABLE `images` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (82.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20101207062729')[0m
+Migrating to AddAttachments_toAddImageToImage (20101207062925)
+  [4;36;1mSQL (472.1ms)[0m   [0;1mALTER TABLE `images` ADD `image_file_name` varchar(255)[0m
+  [4;35;1mSQL (478.7ms)[0m   [0mALTER TABLE `images` ADD `image_content_type` varchar(255)[0m
+  [4;36;1mSQL (591.6ms)[0m   [0;1mALTER TABLE `images` ADD `image_file_size` int(11)[0m
+  [4;35;1mSQL (509.9ms)[0m   [0mALTER TABLE `images` ADD `image_updated_at` datetime[0m
+  [4;36;1mSQL (92.2ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20101207062925')[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (1.7ms)[0m   [0;1mSHOW FIELDS FROM `images`[0m
+  [4;35;1mSQL (1.8ms)[0m   [0mdescribe `images`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW KEYS FROM `images`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#index (for 127.0.0.1 at 2010-12-07 12:10:14) [GET]
+  [4;36;1mImage Load (0.5ms)[0m   [0;1mSELECT * FROM `images` [0m
+Rendering template within layouts/images
+Rendering images/index
+Completed in 31ms (View: 20, DB: 1) | 200 OK [http://localhost/images]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#new (for 127.0.0.1 at 2010-12-07 12:10:16) [GET]
+  [4;35;1mImage Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `images`[0m
+Rendering template within layouts/images
+Rendering images/new
+Completed in 45ms (View: 29, DB: 1) | 200 OK [http://localhost/images/new]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#create (for 127.0.0.1 at 2010-12-07 12:10:24) [POST]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"4VfimXTGr4iEsdR6oitMwWHYQlyW0lY0VAqOkD+UtTM=", "image"=>{"name"=>"New Image", "image"=>#<File:/tmp/RackMultipart20101207-4102-gy0tmh-0>}}
+  [4;36;1mImage Columns (9.7ms)[0m   [0;1mSHOW FIELDS FROM `images`[0m
+[paperclip] identify -format %wx%h '/tmp/stream20101207-4102-73yrth-0.jpg[0]' 2>/dev/null
+[paperclip] convert '/tmp/stream20101207-4102-73yrth-0.jpg[0]' -resize "640x640>" '/tmp/stream20101207-4102-73yrth-020101207-4102-15id6ay-0' 2>/dev/null
+[paperclip] identify -format %wx%h '/tmp/stream20101207-4102-73yrth-0.jpg[0]' 2>/dev/null
+[paperclip] convert '/tmp/stream20101207-4102-73yrth-0.jpg[0]' -resize "320x320>" '/tmp/stream20101207-4102-73yrth-020101207-4102-awu5ln-0' 2>/dev/null
+[paperclip] identify -format %wx%h '/tmp/stream20101207-4102-73yrth-0.jpg[0]' 2>/dev/null
+[paperclip] convert '/tmp/stream20101207-4102-73yrth-0.jpg[0]' -resize "100x100>" '/tmp/stream20101207-4102-73yrth-020101207-4102-1cv7xas-0' 2>/dev/null
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mImage Create (0.6ms)[0m   [0;1mINSERT INTO `images` (`name`, `created_at`, `image_file_name`, `image_file_size`, `updated_at`, `image_content_type`, `image_updated_at`) VALUES('New Image', '2010-12-07 06:40:25', '1010chp_01_o1966_chevrolet_chevellefront.jpg', 365148, '2010-12-07 06:40:25', 'image/jpeg', '2010-12-07 06:40:24')[0m
+[paperclip] Saving attachments.
+[paperclip] saving /home/pc3/Myproject/heroku/filestorage/public/system/images/1/large/1010chp_01_o1966_chevrolet_chevellefront.jpg
+[paperclip] saving /home/pc3/Myproject/heroku/filestorage/public/system/images/1/medium/1010chp_01_o1966_chevrolet_chevellefront.jpg
+[paperclip] saving /home/pc3/Myproject/heroku/filestorage/public/system/images/1/original/1010chp_01_o1966_chevrolet_chevellefront.jpg
+[paperclip] saving /home/pc3/Myproject/heroku/filestorage/public/system/images/1/thumb/1010chp_01_o1966_chevrolet_chevellefront.jpg
+  [4;35;1mSQL (50.3ms)[0m   [0mCOMMIT[0m
+Redirected to http://localhost:3000/images/1
+Completed in 1324ms (DB: 62) | 302 Found [http://localhost/images]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#show (for 127.0.0.1 at 2010-12-07 12:10:25) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mImage Columns (1.6ms)[0m   [0;1mSHOW FIELDS FROM `images`[0m
+  [4;35;1mImage Load (0.6ms)[0m   [0mSELECT * FROM `images` WHERE (`images`.`id` = 1) [0m
+Rendering template within layouts/images
+Rendering images/show
+Completed in 37ms (View: 17, DB: 2) | 200 OK [http://localhost/images/1]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#index (for 127.0.0.1 at 2010-12-07 12:10:30) [GET]
+  [4;36;1mImage Load (0.4ms)[0m   [0;1mSELECT * FROM `images` [0m
+Rendering template within layouts/images
+Rendering images/index
+  [4;35;1mImage Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `images`[0m
+Completed in 22ms (View: 10, DB: 2) | 200 OK [http://localhost/images]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#index (for 127.0.0.1 at 2010-12-07 12:10:44) [GET]
+  [4;36;1mImage Load (0.4ms)[0m   [0;1mSELECT * FROM `images` [0m
+Rendering template within layouts/images
+Rendering images/index
+  [4;35;1mImage Columns (8.2ms)[0m   [0mSHOW FIELDS FROM `images`[0m
+Completed in 63ms (View: 35, DB: 9) | 200 OK [http://localhost/images]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#index (for 127.0.0.1 at 2010-12-07 12:11:05) [GET]
+  [4;36;1mImage Load (0.2ms)[0m   [0;1mSELECT * FROM `images` [0m
+Rendering template within layouts/images
+Rendering images/index
+  [4;35;1mImage Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `images`[0m
+Completed in 32ms (View: 19, DB: 1) | 200 OK [http://localhost/images]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#show (for 127.0.0.1 at 2010-12-07 12:12:00) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mImage Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `images`[0m
+  [4;35;1mImage Load (0.2ms)[0m   [0mSELECT * FROM `images` WHERE (`images`.`id` = 1) [0m
+Rendering template within layouts/images
+Rendering images/show
+
+ActionView::TemplateError (undefined local variable or method `image' for #<ActionView::Base:0xb6e096f4>) on line #1 of app/views/images/show.html.erb:
+1: Name : <%=h image.name %>
+2:     <%= image_tag image.image.url(:large) %>
+3: <%= link_to 'Edit', edit_image_path(@image) %> |
+4: <%= link_to 'Back', images_path %>
+
+    app/views/images/show.html.erb:1
+    app/controllers/images_controller.rb:18:in `show'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (79.0ms)
+Rendered rescues/_request_and_response (2.1ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#show (for 127.0.0.1 at 2010-12-07 12:12:10) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mImage Columns (1.9ms)[0m   [0;1mSHOW FIELDS FROM `images`[0m
+  [4;35;1mImage Load (0.2ms)[0m   [0mSELECT * FROM `images` WHERE (`images`.`id` = 1) [0m
+Rendering template within layouts/images
+Rendering images/show
+Completed in 166ms (View: 145, DB: 3) | 200 OK [http://localhost/images/1]
+  [4;36;1mSQL (3.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#index (for 127.0.0.1 at 2010-12-07 12:17:16) [GET]
+  [4;36;1mImage Load (0.2ms)[0m   [0;1mSELECT * FROM `images` [0m
+Rendering template within layouts/images
+Rendering images/index
+  [4;35;1mImage Columns (3.7ms)[0m   [0mSHOW FIELDS FROM `images`[0m
+Completed in 58ms (View: 40, DB: 7) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#index (for 127.0.0.1 at 2010-12-07 12:22:27) [GET]
+  [4;36;1mImage Load (0.2ms)[0m   [0;1mSELECT * FROM `images` [0m
+Rendering template within layouts/images
+Rendering images/index
+  [4;35;1mImage Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `images`[0m
+Completed in 1117ms (View: 1104, DB: 2) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#new (for 127.0.0.1 at 2010-12-07 12:22:31) [GET]
+  [4;36;1mImage Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `images`[0m
+Rendering template within layouts/images
+Rendering images/new
+Completed in 38ms (View: 25, DB: 1) | 200 OK [http://localhost/images/new]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#create (for 127.0.0.1 at 2010-12-07 12:22:37) [POST]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"4VfimXTGr4iEsdR6oitMwWHYQlyW0lY0VAqOkD+UtTM=", "image"=>{"name"=>"New Image", "image"=>#<File:/tmp/RackMultipart20101207-4270-1idds28-0>}}
+  [4;35;1mImage Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `images`[0m
+[paperclip] identify -format %wx%h '/tmp/stream20101207-4270-eh11x5-0.jpg[0]' 2>/dev/null
+[paperclip] convert '/tmp/stream20101207-4270-eh11x5-0.jpg[0]' -resize "640x640>" '/tmp/stream20101207-4270-eh11x5-020101207-4270-1hyickp-0' 2>/dev/null
+[paperclip] identify -format %wx%h '/tmp/stream20101207-4270-eh11x5-0.jpg[0]' 2>/dev/null
+[paperclip] convert '/tmp/stream20101207-4270-eh11x5-0.jpg[0]' -resize "320x320>" '/tmp/stream20101207-4270-eh11x5-020101207-4270-halzqz-0' 2>/dev/null
+[paperclip] identify -format %wx%h '/tmp/stream20101207-4270-eh11x5-0.jpg[0]' 2>/dev/null
+[paperclip] convert '/tmp/stream20101207-4270-eh11x5-0.jpg[0]' -resize "100x100>" '/tmp/stream20101207-4270-eh11x5-020101207-4270-11ong9d-0' 2>/dev/null
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mImage Create (0.6ms)[0m   [0mINSERT INTO `images` (`name`, `created_at`, `image_file_name`, `image_file_size`, `updated_at`, `image_content_type`, `image_updated_at`) VALUES('New Image', '2010-12-07 06:52:39', 'Baseball-2.jpg', 296538, '2010-12-07 06:52:39', 'image/jpeg', '2010-12-07 06:52:37')[0m
+[paperclip] Saving attachments.
+[paperclip] saving /system/images/2/large/Baseball-2.jpg
+  [4;36;1mSQL (48.8ms)[0m   [0;1mROLLBACK[0m
+
+Errno::ECONNRESET (Connection reset by peer):
+  /usr/lib/ruby/1.8/net/protocol.rb:177:in `write'
+  /usr/lib/ruby/1.8/net/protocol.rb:177:in `write0'
+  /usr/lib/ruby/1.8/net/protocol.rb:153:in `write'
+  /usr/lib/ruby/1.8/net/protocol.rb:168:in `writing'
+  /usr/lib/ruby/1.8/net/protocol.rb:152:in `write'
+  /usr/lib/ruby/gems/1.8/gems/aws-s3-0.6.2/lib/aws/s3/extensions.rb:324:in `send_request_with_body_stream'
+  /usr/lib/ruby/1.8/net/http.rb:1527:in `exec'
+  /usr/lib/ruby/1.8/net/http.rb:1048:in `request'
+  /usr/lib/ruby/gems/1.8/gems/aws-s3-0.6.2/lib/aws/s3/connection.rb:45:in `request'
+  /usr/lib/ruby/1.8/net/http.rb:543:in `start'
+  /usr/lib/ruby/gems/1.8/gems/aws-s3-0.6.2/lib/aws/s3/connection.rb:52:in `request'
+  /usr/lib/ruby/gems/1.8/gems/aws-s3-0.6.2/lib/aws/s3/base.rb:69:in `request'
+  /usr/lib/ruby/gems/1.8/gems/aws-s3-0.6.2/lib/aws/s3/base.rb:88:in `put'
+  /usr/lib/ruby/gems/1.8/gems/aws-s3-0.6.2/lib/aws/s3/object.rb:241:in `store'
+  paperclip (2.3.6) lib/paperclip/storage/s3.rb:148:in `flush_writes'
+  paperclip (2.3.6) lib/paperclip/storage/s3.rb:145:in `each'
+  paperclip (2.3.6) lib/paperclip/storage/s3.rb:145:in `flush_writes'
+  paperclip (2.3.6) lib/paperclip/attachment.rb:148:in `save'
+  paperclip (2.3.6) lib/paperclip.rb:357:in `send'
+  paperclip (2.3.6) lib/paperclip.rb:357:in `save_attached_files'
+  paperclip (2.3.6) lib/paperclip.rb:350:in `each_attachment'
+  paperclip (2.3.6) lib/paperclip.rb:349:in `each'
+  paperclip (2.3.6) lib/paperclip.rb:349:in `each_attachment'
+  paperclip (2.3.6) lib/paperclip.rb:356:in `save_attached_files'
+  app/controllers/images_controller.rb:45:in `create'
+  app/controllers/images_controller.rb:44:in `create'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (239.2ms)
+Rendered rescues/_request_and_response (3.0ms)
+Rendering rescues/layout (internal_server_error)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#create (for 127.0.0.1 at 2010-12-07 12:23:10) [POST]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"4VfimXTGr4iEsdR6oitMwWHYQlyW0lY0VAqOkD+UtTM=", "image"=>{"name"=>"New Image", "image"=>#<File:/tmp/RackMultipart20101207-4270-1lqp7kq-0>}}
+  [4;35;1mImage Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `images`[0m
+[paperclip] identify -format %wx%h '/tmp/stream20101207-4270-9ivr2i-0.jpg[0]' 2>/dev/null
+[paperclip] convert '/tmp/stream20101207-4270-9ivr2i-0.jpg[0]' -resize "640x640>" '/tmp/stream20101207-4270-9ivr2i-020101207-4270-ia3x49-0' 2>/dev/null
+[paperclip] identify -format %wx%h '/tmp/stream20101207-4270-9ivr2i-0.jpg[0]' 2>/dev/null
+[paperclip] convert '/tmp/stream20101207-4270-9ivr2i-0.jpg[0]' -resize "320x320>" '/tmp/stream20101207-4270-9ivr2i-020101207-4270-lp3ifm-0' 2>/dev/null
+[paperclip] identify -format %wx%h '/tmp/stream20101207-4270-9ivr2i-0.jpg[0]' 2>/dev/null
+[paperclip] convert '/tmp/stream20101207-4270-9ivr2i-0.jpg[0]' -resize "100x100>" '/tmp/stream20101207-4270-9ivr2i-020101207-4270-1xypz7g-0' 2>/dev/null
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mImage Create (0.6ms)[0m   [0mINSERT INTO `images` (`name`, `created_at`, `image_file_name`, `image_file_size`, `updated_at`, `image_content_type`, `image_updated_at`) VALUES('New Image', '2010-12-07 06:53:12', 'Baseball-2.jpg', 296538, '2010-12-07 06:53:12', 'image/jpeg', '2010-12-07 06:53:11')[0m
+[paperclip] Saving attachments.
+[paperclip] saving /system/images/3/large/Baseball-2.jpg
+  [4;36;1mSQL (60.4ms)[0m   [0;1mROLLBACK[0m
+
+Errno::ECONNRESET (Connection reset by peer):
+  /usr/lib/ruby/1.8/net/protocol.rb:177:in `write'
+  /usr/lib/ruby/1.8/net/protocol.rb:177:in `write0'
+  /usr/lib/ruby/1.8/net/protocol.rb:153:in `write'
+  /usr/lib/ruby/1.8/net/protocol.rb:168:in `writing'
+  /usr/lib/ruby/1.8/net/protocol.rb:152:in `write'
+  /usr/lib/ruby/gems/1.8/gems/aws-s3-0.6.2/lib/aws/s3/extensions.rb:324:in `send_request_with_body_stream'
+  /usr/lib/ruby/1.8/net/http.rb:1527:in `exec'
+  /usr/lib/ruby/1.8/net/http.rb:1048:in `request'
+  /usr/lib/ruby/gems/1.8/gems/aws-s3-0.6.2/lib/aws/s3/connection.rb:45:in `request'
+  /usr/lib/ruby/1.8/net/http.rb:543:in `start'
+  /usr/lib/ruby/gems/1.8/gems/aws-s3-0.6.2/lib/aws/s3/connection.rb:52:in `request'
+  /usr/lib/ruby/gems/1.8/gems/aws-s3-0.6.2/lib/aws/s3/base.rb:69:in `request'
+  /usr/lib/ruby/gems/1.8/gems/aws-s3-0.6.2/lib/aws/s3/base.rb:88:in `put'
+  /usr/lib/ruby/gems/1.8/gems/aws-s3-0.6.2/lib/aws/s3/object.rb:241:in `store'
+  paperclip (2.3.6) lib/paperclip/storage/s3.rb:148:in `flush_writes'
+  paperclip (2.3.6) lib/paperclip/storage/s3.rb:145:in `each'
+  paperclip (2.3.6) lib/paperclip/storage/s3.rb:145:in `flush_writes'
+  paperclip (2.3.6) lib/paperclip/attachment.rb:148:in `save'
+  paperclip (2.3.6) lib/paperclip.rb:357:in `send'
+  paperclip (2.3.6) lib/paperclip.rb:357:in `save_attached_files'
+  paperclip (2.3.6) lib/paperclip.rb:350:in `each_attachment'
+  paperclip (2.3.6) lib/paperclip.rb:349:in `each'
+  paperclip (2.3.6) lib/paperclip.rb:349:in `each_attachment'
+  paperclip (2.3.6) lib/paperclip.rb:356:in `save_attached_files'
+  app/controllers/images_controller.rb:45:in `create'
+  app/controllers/images_controller.rb:44:in `create'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (268.0ms)
+Rendered rescues/_request_and_response (1.0ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#new (for 127.0.0.1 at 2010-12-07 12:23:53) [GET]
+  [4;36;1mImage Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `images`[0m
+Rendering template within layouts/images
+Rendering images/new
+Completed in 136ms (View: 124, DB: 1) | 200 OK [http://localhost/images/new]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#create (for 127.0.0.1 at 2010-12-07 12:23:58) [POST]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"4VfimXTGr4iEsdR6oitMwWHYQlyW0lY0VAqOkD+UtTM=", "image"=>{"name"=>"New Image", "image"=>#<File:/tmp/RackMultipart20101207-4308-1svtav5-0>}}
+  [4;35;1mImage Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `images`[0m
+[paperclip] identify -format %wx%h '/tmp/stream20101207-4308-19se2a6-0.jpg[0]' 2>/dev/null
+[paperclip] convert '/tmp/stream20101207-4308-19se2a6-0.jpg[0]' -resize "640x640>" '/tmp/stream20101207-4308-19se2a6-020101207-4308-uqoybx-0' 2>/dev/null
+[paperclip] identify -format %wx%h '/tmp/stream20101207-4308-19se2a6-0.jpg[0]' 2>/dev/null
+[paperclip] convert '/tmp/stream20101207-4308-19se2a6-0.jpg[0]' -resize "320x320>" '/tmp/stream20101207-4308-19se2a6-020101207-4308-iu3gmc-0' 2>/dev/null
+[paperclip] identify -format %wx%h '/tmp/stream20101207-4308-19se2a6-0.jpg[0]' 2>/dev/null
+[paperclip] convert '/tmp/stream20101207-4308-19se2a6-0.jpg[0]' -resize "100x100>" '/tmp/stream20101207-4308-19se2a6-020101207-4308-1nd7zev-0' 2>/dev/null
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mImage Create (1.3ms)[0m   [0mINSERT INTO `images` (`name`, `created_at`, `image_file_name`, `image_file_size`, `updated_at`, `image_content_type`, `image_updated_at`) VALUES('New Image', '2010-12-07 06:54:00', 'cat_wallpaper_21_1024_768.jpg', 174535, '2010-12-07 06:54:00', 'image/jpeg', '2010-12-07 06:53:59')[0m
+[paperclip] Saving attachments.
+[paperclip] saving /system/images/4/large/cat_wallpaper_21_1024_768.jpg
+  [4;36;1mSQL (63.4ms)[0m   [0;1mROLLBACK[0m
+
+Errno::ECONNRESET (Connection reset by peer):
+  /usr/lib/ruby/1.8/net/protocol.rb:177:in `write'
+  /usr/lib/ruby/1.8/net/protocol.rb:177:in `write0'
+  /usr/lib/ruby/1.8/net/protocol.rb:153:in `write'
+  /usr/lib/ruby/1.8/net/protocol.rb:168:in `writing'
+  /usr/lib/ruby/1.8/net/protocol.rb:152:in `write'
+  /usr/lib/ruby/gems/1.8/gems/aws-s3-0.6.2/lib/aws/s3/extensions.rb:324:in `send_request_with_body_stream'
+  /usr/lib/ruby/1.8/net/http.rb:1527:in `exec'
+  /usr/lib/ruby/1.8/net/http.rb:1048:in `request'
+  /usr/lib/ruby/gems/1.8/gems/aws-s3-0.6.2/lib/aws/s3/connection.rb:45:in `request'
+  /usr/lib/ruby/1.8/net/http.rb:543:in `start'
+  /usr/lib/ruby/gems/1.8/gems/aws-s3-0.6.2/lib/aws/s3/connection.rb:52:in `request'
+  /usr/lib/ruby/gems/1.8/gems/aws-s3-0.6.2/lib/aws/s3/base.rb:69:in `request'
+  /usr/lib/ruby/gems/1.8/gems/aws-s3-0.6.2/lib/aws/s3/base.rb:88:in `put'
+  /usr/lib/ruby/gems/1.8/gems/aws-s3-0.6.2/lib/aws/s3/object.rb:241:in `store'
+  paperclip (2.3.6) lib/paperclip/storage/s3.rb:148:in `flush_writes'
+  paperclip (2.3.6) lib/paperclip/storage/s3.rb:145:in `each'
+  paperclip (2.3.6) lib/paperclip/storage/s3.rb:145:in `flush_writes'
+  paperclip (2.3.6) lib/paperclip/attachment.rb:148:in `save'
+  paperclip (2.3.6) lib/paperclip.rb:357:in `send'
+  paperclip (2.3.6) lib/paperclip.rb:357:in `save_attached_files'
+  paperclip (2.3.6) lib/paperclip.rb:350:in `each_attachment'
+  paperclip (2.3.6) lib/paperclip.rb:349:in `each'
+  paperclip (2.3.6) lib/paperclip.rb:349:in `each_attachment'
+  paperclip (2.3.6) lib/paperclip.rb:356:in `save_attached_files'
+  app/controllers/images_controller.rb:45:in `create'
+  app/controllers/images_controller.rb:44:in `create'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (116.3ms)
+Rendered rescues/_request_and_response (2.5ms)
+Rendering rescues/layout (internal_server_error)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#index (for 127.0.0.1 at 2010-12-07 12:24:40) [GET]
+  [4;35;1mImage Load (0.6ms)[0m   [0mSELECT * FROM `images` [0m
+Rendering template within layouts/images
+Rendering images/index
+  [4;36;1mImage Columns (1.6ms)[0m   [0;1mSHOW FIELDS FROM `images`[0m
+Completed in 205ms (View: 184, DB: 2) | 200 OK [http://localhost/images]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#destroy (for 127.0.0.1 at 2010-12-07 12:24:43) [DELETE]
+  Parameters: {"authenticity_token"=>"4VfimXTGr4iEsdR6oitMwWHYQlyW0lY0VAqOkD+UtTM=", "id"=>"1"}
+  [4;35;1mImage Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `images`[0m
+  [4;36;1mImage Load (3.5ms)[0m   [0;1mSELECT * FROM `images` WHERE (`images`.`id` = 1) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+[paperclip] Deleting attachments.
+[paperclip] deleting /system/images/1/original/1010chp_01_o1966_chevrolet_chevellefront.jpg
+[paperclip] deleting /system/images/1/large/1010chp_01_o1966_chevrolet_chevellefront.jpg
+[paperclip] deleting /system/images/1/medium/1010chp_01_o1966_chevrolet_chevellefront.jpg
+[paperclip] deleting /system/images/1/thumb/1010chp_01_o1966_chevrolet_chevellefront.jpg
+  [4;36;1mImage Destroy (18.7ms)[0m   [0;1mDELETE FROM `images` WHERE `id` = 1[0m
+  [4;35;1mSQL (100.8ms)[0m   [0mCOMMIT[0m
+Redirected to http://localhost:3000/images
+Completed in 7334ms (DB: 124) | 302 Found [http://localhost/images/1]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#index (for 127.0.0.1 at 2010-12-07 12:24:51) [GET]
+  [4;36;1mImage Load (0.4ms)[0m   [0;1mSELECT * FROM `images` [0m
+Rendering template within layouts/images
+Rendering images/index
+Completed in 21ms (View: 2, DB: 1) | 200 OK [http://localhost/images]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#new (for 127.0.0.1 at 2010-12-07 12:24:59) [GET]
+  [4;35;1mImage Columns (1.9ms)[0m   [0mSHOW FIELDS FROM `images`[0m
+Rendering template within layouts/images
+Rendering images/new
+Completed in 45ms (View: 27, DB: 2) | 200 OK [http://localhost/images/new]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#create (for 127.0.0.1 at 2010-12-07 12:25:06) [POST]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"4VfimXTGr4iEsdR6oitMwWHYQlyW0lY0VAqOkD+UtTM=", "image"=>{"name"=>"New Image", "image"=>#<File:/tmp/RackMultipart20101207-4308-6if94y-0>}}
+  [4;36;1mImage Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `images`[0m
+[paperclip] identify -format %wx%h '/tmp/stream20101207-4308-w7oehc-0.jpg[0]' 2>/dev/null
+[paperclip] convert '/tmp/stream20101207-4308-w7oehc-0.jpg[0]' -resize "640x640>" '/tmp/stream20101207-4308-w7oehc-020101207-4308-18s9rbj-0' 2>/dev/null
+[paperclip] identify -format %wx%h '/tmp/stream20101207-4308-w7oehc-0.jpg[0]' 2>/dev/null
+[paperclip] convert '/tmp/stream20101207-4308-w7oehc-0.jpg[0]' -resize "320x320>" '/tmp/stream20101207-4308-w7oehc-020101207-4308-1d0ce3b-0' 2>/dev/null
+[paperclip] identify -format %wx%h '/tmp/stream20101207-4308-w7oehc-0.jpg[0]' 2>/dev/null
+[paperclip] convert '/tmp/stream20101207-4308-w7oehc-0.jpg[0]' -resize "100x100>" '/tmp/stream20101207-4308-w7oehc-020101207-4308-1e77ca0-0' 2>/dev/null
+  [4;35;1mSQL (0.2ms)[0m   [0mBEGIN[0m
+  [4;36;1mImage Create (0.6ms)[0m   [0;1mINSERT INTO `images` (`name`, `created_at`, `image_file_name`, `image_file_size`, `updated_at`, `image_content_type`, `image_updated_at`) VALUES('New Image', '2010-12-07 06:55:08', 'Buster--63-.jpg', 386001, '2010-12-07 06:55:08', 'image/jpeg', '2010-12-07 06:55:07')[0m
+[paperclip] Saving attachments.
+[paperclip] saving /system/images/5/large/Buster--63-.jpg
+  [4;35;1mSQL (58.6ms)[0m   [0mROLLBACK[0m
+
+Errno::ECONNRESET (Connection reset by peer):
+  /usr/lib/ruby/1.8/net/protocol.rb:177:in `write'
+  /usr/lib/ruby/1.8/net/protocol.rb:177:in `write0'
+  /usr/lib/ruby/1.8/net/protocol.rb:153:in `write'
+  /usr/lib/ruby/1.8/net/protocol.rb:168:in `writing'
+  /usr/lib/ruby/1.8/net/protocol.rb:152:in `write'
+  /usr/lib/ruby/gems/1.8/gems/aws-s3-0.6.2/lib/aws/s3/extensions.rb:324:in `send_request_with_body_stream'
+  /usr/lib/ruby/1.8/net/http.rb:1527:in `exec'
+  /usr/lib/ruby/1.8/net/http.rb:1048:in `request'
+  /usr/lib/ruby/gems/1.8/gems/aws-s3-0.6.2/lib/aws/s3/connection.rb:45:in `request'
+  /usr/lib/ruby/1.8/net/http.rb:543:in `start'
+  /usr/lib/ruby/gems/1.8/gems/aws-s3-0.6.2/lib/aws/s3/connection.rb:52:in `request'
+  /usr/lib/ruby/gems/1.8/gems/aws-s3-0.6.2/lib/aws/s3/base.rb:69:in `request'
+  /usr/lib/ruby/gems/1.8/gems/aws-s3-0.6.2/lib/aws/s3/base.rb:88:in `put'
+  /usr/lib/ruby/gems/1.8/gems/aws-s3-0.6.2/lib/aws/s3/object.rb:241:in `store'
+  paperclip (2.3.6) lib/paperclip/storage/s3.rb:148:in `flush_writes'
+  paperclip (2.3.6) lib/paperclip/storage/s3.rb:145:in `each'
+  paperclip (2.3.6) lib/paperclip/storage/s3.rb:145:in `flush_writes'
+  paperclip (2.3.6) lib/paperclip/attachment.rb:148:in `save'
+  paperclip (2.3.6) lib/paperclip.rb:357:in `send'
+  paperclip (2.3.6) lib/paperclip.rb:357:in `save_attached_files'
+  paperclip (2.3.6) lib/paperclip.rb:350:in `each_attachment'
+  paperclip (2.3.6) lib/paperclip.rb:349:in `each'
+  paperclip (2.3.6) lib/paperclip.rb:349:in `each_attachment'
+  paperclip (2.3.6) lib/paperclip.rb:356:in `save_attached_files'
+  app/controllers/images_controller.rb:45:in `create'
+  app/controllers/images_controller.rb:44:in `create'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (119.9ms)
+Rendered rescues/_request_and_response (0.9ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#new (for 127.0.0.1 at 2010-12-07 12:31:34) [GET]
+  [4;36;1mImage Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `images`[0m
+Rendering template within layouts/images
+Rendering images/new
+Completed in 135ms (View: 123, DB: 1) | 200 OK [http://localhost/images/new]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#create (for 127.0.0.1 at 2010-12-07 12:31:39) [POST]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"4VfimXTGr4iEsdR6oitMwWHYQlyW0lY0VAqOkD+UtTM=", "image"=>{"name"=>"New Image", "image"=>#<File:/tmp/RackMultipart20101207-4373-ix4ekl-0>}}
+  [4;35;1mImage Columns (11.2ms)[0m   [0mSHOW FIELDS FROM `images`[0m
+[paperclip] identify -format %wx%h '/tmp/stream20101207-4373-ssqjf9-0.jpg[0]' 2>/dev/null
+[paperclip] convert '/tmp/stream20101207-4373-ssqjf9-0.jpg[0]' -resize "640x640>" '/tmp/stream20101207-4373-ssqjf9-020101207-4373-99gmt5-0' 2>/dev/null
+[paperclip] identify -format %wx%h '/tmp/stream20101207-4373-ssqjf9-0.jpg[0]' 2>/dev/null
+[paperclip] convert '/tmp/stream20101207-4373-ssqjf9-0.jpg[0]' -resize "320x320>" '/tmp/stream20101207-4373-ssqjf9-020101207-4373-1llamju-0' 2>/dev/null
+[paperclip] identify -format %wx%h '/tmp/stream20101207-4373-ssqjf9-0.jpg[0]' 2>/dev/null
+[paperclip] convert '/tmp/stream20101207-4373-ssqjf9-0.jpg[0]' -resize "100x100>" '/tmp/stream20101207-4373-ssqjf9-020101207-4373-wg65l2-0' 2>/dev/null
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mImage Create (0.8ms)[0m   [0mINSERT INTO `images` (`name`, `created_at`, `image_file_name`, `image_file_size`, `updated_at`, `image_content_type`, `image_updated_at`) VALUES('New Image', '2010-12-07 07:01:41', 'cat_wallpaper_21_1024_768.jpg', 174535, '2010-12-07 07:01:41', 'image/jpeg', '2010-12-07 07:01:40')[0m
+[paperclip] Saving attachments.
+[paperclip] saving /system/images/6/large/cat_wallpaper_21_1024_768.jpg
+[paperclip] saving /system/images/6/medium/cat_wallpaper_21_1024_768.jpg
+[paperclip] saving /system/images/6/thumb/cat_wallpaper_21_1024_768.jpg
+[paperclip] saving /system/images/6/original/cat_wallpaper_21_1024_768.jpg
+  [4;36;1mSQL (60.5ms)[0m   [0;1mCOMMIT[0m
+Redirected to http://localhost:3000/images/6
+Completed in 14189ms (DB: 73) | 302 Found [http://localhost/images]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#show (for 127.0.0.1 at 2010-12-07 12:31:53) [GET]
+  Parameters: {"id"=>"6"}
+  [4;35;1mImage Columns (3.8ms)[0m   [0mSHOW FIELDS FROM `images`[0m
+  [4;36;1mImage Load (0.6ms)[0m   [0;1mSELECT * FROM `images` WHERE (`images`.`id` = 6) [0m
+Rendering template within layouts/images
+Rendering images/show
+Completed in 54ms (View: 30, DB: 5) | 200 OK [http://localhost/images/6]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#index (for 127.0.0.1 at 2010-12-07 12:41:12) [GET]
+  [4;36;1mImage Load (0.7ms)[0m   [0;1mSELECT * FROM `images` [0m
+Rendering template within layouts/images
+Rendering images/index
+  [4;35;1mImage Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `images`[0m
+Completed in 851ms (View: 837, DB: 2) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#new (for 127.0.0.1 at 2010-12-07 12:41:14) [GET]
+  [4;36;1mImage Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `images`[0m
+Rendering template within layouts/images
+Rendering images/new
+Completed in 42ms (View: 26, DB: 1) | 200 OK [http://localhost/images/new]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#create (for 127.0.0.1 at 2010-12-07 12:41:19) [POST]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"4VfimXTGr4iEsdR6oitMwWHYQlyW0lY0VAqOkD+UtTM=", "image"=>{"name"=>"New Image", "image"=>#<File:/tmp/RackMultipart20101207-4479-utxnb9-0>}}
+  [4;35;1mImage Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `images`[0m
+[paperclip] identify -format %wx%h '/tmp/stream20101207-4479-1lvzw3n-0.jpeg[0]' 2>/dev/null
+[paperclip] convert '/tmp/stream20101207-4479-1lvzw3n-0.jpeg[0]' -resize "640x640>" '/tmp/stream20101207-4479-1lvzw3n-020101207-4479-1txhhm8-0' 2>/dev/null
+[paperclip] identify -format %wx%h '/tmp/stream20101207-4479-1lvzw3n-0.jpeg[0]' 2>/dev/null
+[paperclip] convert '/tmp/stream20101207-4479-1lvzw3n-0.jpeg[0]' -resize "320x320>" '/tmp/stream20101207-4479-1lvzw3n-020101207-4479-ooc5hn-0' 2>/dev/null
+[paperclip] identify -format %wx%h '/tmp/stream20101207-4479-1lvzw3n-0.jpeg[0]' 2>/dev/null
+[paperclip] convert '/tmp/stream20101207-4479-1lvzw3n-0.jpeg[0]' -resize "100x100>" '/tmp/stream20101207-4479-1lvzw3n-020101207-4479-10c8dga-0' 2>/dev/null
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mImage Create (0.4ms)[0m   [0mINSERT INTO `images` (`name`, `created_at`, `image_file_name`, `image_file_size`, `updated_at`, `image_content_type`, `image_updated_at`) VALUES('New Image', '2010-12-07 07:11:24', 'Lake_mapourika_NZ (1).jpeg', 527261, '2010-12-07 07:11:24', 'image/jpeg', '2010-12-07 07:11:19')[0m
+[paperclip] Saving attachments.
+[paperclip] saving /system/images/7/large/7.jpeg
+[paperclip] saving /system/images/7/medium/7.jpeg
+[paperclip] saving /system/images/7/thumb/7.jpeg
+[paperclip] saving /system/images/7/original/7.jpeg
+  [4;36;1mSQL (61.9ms)[0m   [0;1mCOMMIT[0m
+Redirected to http://localhost:3000/images/7
+Completed in 17166ms (DB: 64) | 302 Found [http://localhost/images]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#show (for 127.0.0.1 at 2010-12-07 12:41:37) [GET]
+  Parameters: {"id"=>"7"}
+  [4;35;1mImage Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `images`[0m
+  [4;36;1mImage Load (0.4ms)[0m   [0;1mSELECT * FROM `images` WHERE (`images`.`id` = 7) [0m
+Rendering template within layouts/images
+Rendering images/show
+Completed in 31ms (View: 18, DB: 2) | 200 OK [http://localhost/images/7]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#index (for 127.0.0.1 at 2010-12-07 12:41:54) [GET]
+  [4;35;1mImage Load (0.4ms)[0m   [0mSELECT * FROM `images` [0m
+Rendering template within layouts/images
+Rendering images/index
+  [4;36;1mImage Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `images`[0m
+Completed in 52ms (View: 28, DB: 2) | 200 OK [http://localhost/images]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#index (for 127.0.0.1 at 2010-12-07 12:41:57) [GET]
+  [4;35;1mImage Load (0.2ms)[0m   [0mSELECT * FROM `images` [0m
+Rendering template within layouts/images
+Rendering images/index
+  [4;36;1mImage Columns (4.2ms)[0m   [0;1mSHOW FIELDS FROM `images`[0m
+Completed in 49ms (View: 27, DB: 5) | 200 OK [http://localhost/images]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#show (for 127.0.0.1 at 2010-12-07 12:42:51) [GET]
+  Parameters: {"id"=>"7"}
+  [4;35;1mImage Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `images`[0m
+  [4;36;1mImage Load (3.1ms)[0m   [0;1mSELECT * FROM `images` WHERE (`images`.`id` = 7) [0m
+Rendering template within layouts/images
+Rendering images/show
+Completed in 59ms (View: 27, DB: 5) | 200 OK [http://localhost/images/7]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#index (for 127.0.0.1 at 2010-12-07 12:53:24) [GET]
+  [4;36;1mImage Load (15.6ms)[0m   [0;1mSELECT * FROM `images` [0m
+Rendering template within layouts/images
+Rendering images/index
+  [4;35;1mImage Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `images`[0m
+Completed in 1914ms (View: 1879, DB: 17) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#index (for 127.0.0.1 at 2010-12-07 12:54:36) [GET]
+  [4;36;1mImage Load (0.2ms)[0m   [0;1mSELECT * FROM `images` [0m
+Rendering template within layouts/images
+Rendering images/index
+  [4;35;1mImage Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `images`[0m
+Completed in 49ms (View: 37, DB: 1) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#index (for 127.0.0.1 at 2010-12-07 12:54:56) [GET]
+  [4;36;1mImage Load (0.2ms)[0m   [0;1mSELECT * FROM `images` [0m
+Rendering template within layouts/images
+Rendering images/index
+  [4;35;1mImage Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `images`[0m
+Completed in 45ms (View: 28, DB: 2) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#new (for 127.0.0.1 at 2010-12-07 12:55:03) [GET]
+  [4;36;1mImage Columns (3.5ms)[0m   [0;1mSHOW FIELDS FROM `images`[0m
+Rendering template within layouts/images
+Rendering images/new
+Completed in 67ms (View: 47, DB: 4) | 200 OK [http://localhost/images/new]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#new (for 127.0.0.1 at 2010-12-07 12:55:50) [GET]
+  [4;35;1mImage Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `images`[0m
+Rendering template within layouts/images
+Rendering images/new
+Completed in 41ms (View: 20, DB: 2) | 200 OK [http://localhost/images/new]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#new (for 127.0.0.1 at 2010-12-07 12:56:16) [GET]
+  [4;36;1mImage Columns (1.6ms)[0m   [0;1mSHOW FIELDS FROM `images`[0m
+Rendering template within layouts/images
+Rendering images/new
+Completed in 43ms (View: 24, DB: 2) | 200 OK [http://localhost/images/new]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#new (for 127.0.0.1 at 2010-12-07 12:56:48) [GET]
+  [4;35;1mImage Columns (2.7ms)[0m   [0mSHOW FIELDS FROM `images`[0m
+Rendering template within layouts/images
+Rendering images/new
+Completed in 35ms (View: 20, DB: 3) | 200 OK [http://localhost/images/new]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#new (for 127.0.0.1 at 2010-12-07 12:58:27) [GET]
+  [4;36;1mImage Columns (1.6ms)[0m   [0;1mSHOW FIELDS FROM `images`[0m
+Rendering template within layouts/images
+Rendering images/new
+Completed in 48ms (View: 29, DB: 2) | 200 OK [http://localhost/images/new]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#new (for 127.0.0.1 at 2010-12-07 12:58:52) [GET]
+  [4;35;1mImage Columns (4.0ms)[0m   [0mSHOW FIELDS FROM `images`[0m
+Rendering template within layouts/images
+Rendering images/new
+Completed in 52ms (View: 30, DB: 4) | 200 OK [http://localhost/images/new]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#new (for 127.0.0.1 at 2010-12-07 12:58:58) [GET]
+  [4;36;1mImage Columns (1.9ms)[0m   [0;1mSHOW FIELDS FROM `images`[0m
+Rendering template within layouts/images
+Rendering images/new
+Completed in 47ms (View: 25, DB: 2) | 200 OK [http://localhost/images/new]
+  [4;35;1mSQL (0.4ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#new (for 127.0.0.1 at 2010-12-07 12:59:21) [GET]
+  [4;35;1mImage Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `images`[0m
+Rendering template within layouts/images
+Rendering images/new
+Completed in 35ms (View: 23, DB: 1) | 200 OK [http://localhost/images/new]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#index (for 127.0.0.1 at 2010-12-07 13:01:58) [GET]
+  [4;36;1mImage Load (0.2ms)[0m   [0;1mSELECT * FROM `images` [0m
+Rendering template within layouts/images
+Rendering images/index
+  [4;35;1mImage Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `images`[0m
+Completed in 67ms (View: 33, DB: 2) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#new (for 127.0.0.1 at 2010-12-07 13:02:00) [GET]
+  [4;36;1mImage Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `images`[0m
+Rendering template within layouts/images
+Rendering images/new
+Completed in 52ms (View: 31, DB: 2) | 200 OK [http://localhost/images/new]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#new (for 127.0.0.1 at 2010-12-07 13:02:03) [GET]
+  [4;35;1mImage Columns (2.7ms)[0m   [0mSHOW FIELDS FROM `images`[0m
+Rendering template within layouts/images
+Rendering images/new
+Completed in 32ms (View: 12, DB: 3) | 200 OK [http://localhost/images/new]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#new (for 127.0.0.1 at 2010-12-07 13:02:11) [GET]
+  [4;36;1mImage Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `images`[0m
+Rendering template within layouts/images
+Rendering images/new
+Completed in 51ms (View: 33, DB: 2) | 200 OK [http://localhost/images/new]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ImagesController#new (for 127.0.0.1 at 2010-12-07 13:02:18) [GET]
+  [4;35;1mImage Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `images`[0m
+Rendering template within layouts/images
+Rendering images/new
+Completed in 53ms (View: 33, DB: 2) | 200 OK [http://localhost/images/new]

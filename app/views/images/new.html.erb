@@ -1,0 +1,25 @@
+<div class="span-15 prepend-4">
+
+<% form_for @image, :html => {:multipart => true} do |f| %>
+  <%= f.error_messages %>
+<fieldset>
+  <legend>New Image File</legend>
+<p>
+    <%= f.label :name, 'Logo name' %><br />
+    <%= f.text_field :name %><br />
+</p>
+
+<p>
+    <%= f.label :image %><br />
+    <%= f.file_field :image %><br />
+</p>
+
+  <p>
+    <%= f.submit 'Upload' %>
+  </p>
+<% end %>
+</fieldset>
+
+
+<%= link_to 'Back', images_path %>
+</div>

@@ -1,0 +1,4 @@
+Name : <%=h @image.name %>
+    <%= image_tag @image.image.url(:large) %>
+<%= link_to 'Edit', edit_image_path(@image) %> |
+<%= link_to 'Back', images_path %>
